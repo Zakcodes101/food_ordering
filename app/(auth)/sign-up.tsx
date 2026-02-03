@@ -8,9 +8,10 @@ import { createUser } from "@/lib/appwrite";
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  
   const submit = async () => {
     const { name, email, password } = form;
-    if (!form.name || !form.email || !form.password) {
+    if (!name || !email || !password) {
       return Alert.alert(
         "Error",
         "Please enter valid email address and password",
@@ -19,9 +20,9 @@ const SignUp = () => {
     setIsSubmitting(true);
     try {
       //Call Appwrite Sign Up Function
-      await createUser({name, email, password,});
+      await createUser({ name, email, password });
 
-      Alert.alert("Success", "You have successfully signed up");
+      // Alert.alert("Success", "You have successfully signed up");
       router.replace("/");
     } catch (error: any) {
       Alert.alert("Error", error.message);

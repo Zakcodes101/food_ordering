@@ -5,10 +5,15 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Button
 } from "react-native";
+import * as Sentry from "@sentry/react-native";
+import cn from "clsx";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Fragment } from "react";
-import cn from "clsx";
+
+
 
 import { offers, images } from "@/constants";
 import CartButton from "@/components/CartButton";
@@ -78,6 +83,7 @@ export default function Index() {
             <CartButton />
           </View>
         )}
+        ListFooterComponent={()=>(<Button title='Try!' onPress={ () => { Sentry.captureException(new Error('First error')) }}/>)}
       />
     </SafeAreaView>
   );
