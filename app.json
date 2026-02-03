@@ -47,7 +47,7 @@
           "project": "react-native-food-ordering",
           "organization": "localprojects-dl"
         }
-      ]
+      ],
     ],
     "experiments": {
       "typedRoutes": true,
