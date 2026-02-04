@@ -17,8 +17,12 @@ import { Fragment } from "react";
 
 import { offers, images } from "@/constants";
 import CartButton from "@/components/CartButton";
+import useAuthStore from "@/store/auth.store";
 
 export default function Index() {
+  const {user}= useAuthStore();
+  console.log("Authenticated User:", JSON.stringify(user, null, 2));
+  
   return (
     <SafeAreaView className="flex-1 bg-white">
       <FlatList
