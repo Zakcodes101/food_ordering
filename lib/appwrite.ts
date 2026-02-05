@@ -1,5 +1,5 @@
 import { CreateUserParams, SignInParams } from "@/type";
-import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite";
+import { Account, Avatars, Client, Databases, ID, Query, Storage } from "react-native-appwrite";
 
 export const appwriteConfig = {
     endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -8,10 +8,10 @@ export const appwriteConfig = {
     databaseId: "6981f067000b03f62cd1",
     bucketId: "698334180017a99af773",
     userCollectionId: "6981f0b4000768dc8d3b",
-    catagoriesCollectionId: "69832c33000d1634d0a4",
+    categoriesCollectionId: "69832c33000d1634d0a4",
     menuCollectionId: "69832d19000d9e64939c",
     customisationsCollectionId: "69833020001e1f8e0777",
-    menuCustomisationCollectionId: "6983326d00173007afb6",
+    menuCustomisationsCollectionId: "6983326d00173007afb6",
 };
 
 
@@ -24,6 +24,7 @@ client
 
 export const account = new Account(client)
 export const databases = new Databases(client)
+export const storage = new Storage(client)
 const avatars = new Avatars(client)
 
 export const createUser = async ({ email, password, name }: CreateUserParams) => {
