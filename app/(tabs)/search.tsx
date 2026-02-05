@@ -1,13 +1,16 @@
-import { View, Text, Button, FlatList } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import useAppwrite from "@/lib/useAppwrite";
-import { getMenu, getCategories } from "@/lib/appwrite";
-import { useEffect } from "react";
-import { useLocalSearchParams } from "expo-router";
 import CartButton from "@/components/CartButton";
-import cn from "clsx";
 import MenuCard from "@/components/MenuCard";
+import { getCategories, getMenu } from "@/lib/appwrite";
+import useAppwrite from "@/lib/useAppwrite";
 import { MenuItem } from "@/type";
+import cn from "clsx";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
+import { FlatList, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import Filter from "@/components/Filter";
+import SearchBar from "@/components/SearchBar";
 
 const Search = () => {
   const { category, query } = useLocalSearchParams<{
@@ -32,8 +35,13 @@ const Search = () => {
         renderItem={({ item, index }) => {
           const isFirstRightColItem = index % 2 === 0;
           return (
-            <View className={cn("flex-1 max-w-[48%]", !isFirstRightColItem ?"mt-10": "mt-0")}>
-              <MenuCard item={item as MenuItem}/>
+            <View
+              className={cn(
+                "flex-1 max-w-[48%]",
+                !isFirstRightColItem ? "mt-10" : "mt-0",
+              )}
+            >
+              <MenuCard item={item as MenuItem} />
             </View>
           );
         }}
@@ -57,8 +65,8 @@ const Search = () => {
               <CartButton />
             </View>
 
-            <Text>Searh Input</Text>
-            <Text>Filter</Text>
+            <SearchBar />
+            <Filter categories={categories!} />
           </View>
         )}
         ListEmptyComponent={() => !loading && <Text>No results</Text>}
